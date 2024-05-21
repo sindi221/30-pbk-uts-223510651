@@ -1,6 +1,11 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import './styles.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const app = createApp(App);
 
-createApp(App).mount('#app')
+app.config.globalProperties.$successMessage = function (message) {
+  alert(message);
+};
+
+app.mount('#app');
