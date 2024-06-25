@@ -1,117 +1,109 @@
 <template>
   <div id="app">
-    <button @click="goToPost">Post</button>
-    <button @click="showTodoListForm">TodoList</button>
-    <EmitCom @response="UbahTeks" />
-    <NewComponent title="Todo List Form">
-      <Todos 
-        v-if="!showPost" 
-        ref="todosComponent"
-        :activities="activities" 
-        @cancel-activity="cancelActivity" 
-        @toggle-completion="toggleCompletion" 
-        @add-activity="addActivity" 
-        @edit-activity="editActivity"
-        @update-activity="updateActivity"
-        @customEvent="handleCustomEvent"
-      />
-    </NewComponent>
-    <Post 
-      v-if="showPost" 
-      :users="users" 
-      :posts="posts" 
-      :selectedUser="selectedUser" 
-      @fetch-posts="fetchPosts" 
-    />
+    <q-layout view="hHh lpR fFf">
+      <q-header elevated class="custom-navbar animated-navbar">
+        <q-toolbar>
+          <!-- Perbesar ikon assignment_ind dan pastikan judul berada di samping ikon -->
+          <q-btn flat round dense class="header-icon" href="https://www.instagram.com/sndi_maharani?igsh=M2h4YWt5bWE5Nmo3" target="_blank">
+            <q-icon name="assignment_ind" size="30px" /> <!-- Perbesar ukuran ikon -->
+          </q-btn>
+          <q-toolbar-title class="custom-title">
+            <strong>SINDI's WEB PROJECT</strong>
+          </q-toolbar-title>
+          
+          <router-link to="/" exact-active-class="active" class="q-item animated-item" exact>
+            <q-icon name="home" />
+            <q-item-label>Home</q-item-label>
+          </router-link>
+          <router-link to="/todos" exact-active-class="active" class="q-item animated-item" exact>
+            <q-icon name="list_alt" />
+            <q-item-label>Todos</q-item-label>
+          </router-link>
+          <router-link to="/posts" exact-active-class="active" class="q-item animated-item" exact>
+            <q-icon name="article" />
+            <q-item-label>Post</q-item-label>
+          </router-link>
+          <router-link to="/albums" exact-active-class="active" class="q-item animated-item" exact>
+            <q-icon name="photo_album" />
+            <q-item-label>Album</q-item-label>
+          </router-link>
+        </q-toolbar>
+      </q-header>
+
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+    </q-layout>
   </div>
 </template>
 
 <script>
-import NewComponent from './components/NewComponent.vue';
-import Todos from './components/Todos.vue';
-import Post from './components/Post.vue';
-import EmitCom from './components/EmitCom.vue';
-
 export default {
-  components: {
-    NewComponent,
-    Todos,
-    Post
-  },
-  data() {
-    return {
-      showPost: false,
-      activities: [],
-      users: [],
-      selectedUser: null,
-      posts: [],
-      editIndex: null,
-    };
-  },
-  methods: {
-    showTodoListForm() {
-      this.showPost = false;
-    },
-    goToPost() {
-      this.showPost = true;
-    },
-    async fetchUsers() {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        const data = await response.json();
-        this.users = data;
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    },
-    async fetchPosts(selectedUserId) {
-      if (!selectedUserId) return;
-      try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${selectedUserId}`);
-        const data = await response.json();
-        this.posts = data;
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-      }
-    },
-    addActivity(newActivity) {
-      if (this.editIndex !== null) {
-        this.$set(this.activities, this.editIndex, newActivity);
-        this.editIndex = null;
-      } else {
-        this.activities.push(newActivity);
-      }
-    },
-    cancelActivity(index) {
-      this.activities.splice(index, 1);
-    },
-    toggleCompletion(activity) {
-      activity.completed = !activity.completed;
-    },
-    editActivity(index) {
-      this.editIndex = index;
-      const activityToEdit = this.activities[index];
-      this.$refs.todosComponent.setEditActivity(activityToEdit);
-    },
-    updateActivity(updatedActivity) {
-      if (this.editIndex !== null) {
-        this.$set(this.activities, this.editIndex, updatedActivity);
-        this.editIndex = null;
-      }
-    },
-    handleCustomEvent(message) {
-      console.log(message);  // Or handle the event as needed
-      alert(message);
-    }
-  },
-  async created() {
-    await this.fetchUsers();
-  }
+  name: 'App',
 };
 </script>
 
-<style scoped>
-* {
-  background-color: rgb(30, 103, 82);
+<style>
+/* Bagian ini menambahkan warna latar belakang dasar aplikasi menjadi pink soft */
+body {
+  background-color: #ffc0cb; /* Warna pink soft */
+}
+
+.custom-navbar {
+  background: rgb(253, 90, 201) ; /* Tetap seperti sebelumnya */
+  color: #000000; 
+  height: 120px; 
+  padding: 0 10px;
+}
+
+.custom-navbar .q-toolbar {
+  display: flex;
+  justify-content: flex-start; /* Ubah justify-content menjadi flex-start agar item berada di samping kiri */
+  align-items: center; 
+  padding: 0;
+  height: 100%; 
+}
+
+.custom-title {
+  margin-left: 10px; /* Berikan margin kiri untuk memastikan ada jarak antara ikon dan judul */
+}
+
+.custom-title h3 {
+  margin: 5;
+  color: #000000;
+  font-size: 2.0rem; 
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.719); /* Tambahkan bayangan teks untuk tampilan lebih baik */
+}
+
+.custom-navbar .q-item {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  padding: 0 5px; /* Perkecil padding item */
+  transition: transform 0.3s ease-in-out; /* Tambahkan animasi transisi transform */
+}
+
+.custom-navbar .q-item-label {
+  color: #070303; /* Warna teks link */
+  font-weight: bold;
+  margin-left: 5px; 
+}
+
+.custom-navbar .q-item:hover .q-item-label {
+  color: #7b765f84; 
+}
+
+.custom-navbar .active .q-item-label {
+  color: #7b765f84; 
+}
+
+.custom-navbar .q-icon {
+  font-size: 1.2rem; 
+  margin-right: 5px; 
+}
+
+.animated-item:hover {
+  transform: scale(1.1); 
 }
 </style>

@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView.vue';
+import Todos from '../views/TodosView.vue';
+import Post from '../views/PostView.vue';
+import AlbumView from '../views/AlbumView.vue';
+import PhotoView from '../views/PhotoView.vue';
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'home',
@@ -12,12 +14,33 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+    },
+    {
+      path: '/todos',
+      name: 'Todos',
+      component: Todos,
+    },
+    {
+      path: '/posts',
+      name: 'Post',
+      component: Post,
+    },
+    {
+      path: '/albums',
+      name: 'Album',
+      component: AlbumView,
+    },
+    {
+      path: '/albums/:id',
+      name: 'Album Photo',
+      component: PhotoView,
+    },
+  ];
 
-export default router
+  const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes,
+});
+
+export default router;
