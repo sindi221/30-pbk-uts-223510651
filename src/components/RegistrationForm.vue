@@ -1,34 +1,36 @@
 <template>
   <div class="form-container">
     <h2>Form Pendaftaran Kegiatan</h2>
-    <table>
-      <tr>
-        <td><label for="activity">Kegiatan:</label></td>
-        <td><input type="text" id="activity" v-model="newActivity"></td>
-      </tr>
-      <tr>
-        <td><label for="date">Tanggal:</label></td>
-        <td><input type="date" id="date" v-model="newDate"></td>
-      </tr>
-      <tr>
-        <td><label for="time">Jam:</label></td>
-        <td><input type="time" id="time" v-model="newTime"></td>
-      </tr>
-      <tr>
-        <td><label for="hobby">Hobi:</label></td>
-        <td><input type="text" id="hobby" v-model="newHobby"></td>
-      </tr>
-      <tr>
-        <td colspan="2"><button @click="addActivity">Daftar</button></td>
-      </tr>
-    </table>
+    <div class="form-content">
+      <table>
+        <tr>
+          <td><label for="activity">Kegiatan:</label></td>
+          <td><input type="text" id="activity" v-model="newActivity"></td>
+        </tr>
+        <tr>
+          <td><label for="date">Tanggal:</label></td>
+          <td><input type="date" id="date" v-model="newDate"></td>
+        </tr>
+        <tr>
+          <td><label for="time">Jam:</label></td>
+          <td><input type="time" id="time" v-model="newTime"></td>
+        </tr>
+        <tr>
+          <td><label for="hobby">Hobi:</label></td>
+          <td><input type="text" id="hobby" v-model="newHobby"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button @click="addActivity">Daftar</button></td>
+        </tr>
+      </table>
 
-    <div class="col">
-      <select class="form-control form-control-lg" v-model="currentFilter">
-        <option value="all">Semua</option>
-        <option value="undone">Belum Selesai</option>
-        <option value="done">Selesai</option>
-      </select>
+      <div class="filter-section">
+        <select v-model="currentFilter">
+          <option value="all">Semua</option>
+          <option value="undone">Belum Selesai</option>
+          <option value="done">Selesai</option>
+        </select>
+      </div>
     </div>
 
     <h2>Daftar Kegiatan</h2>
@@ -126,16 +128,17 @@ export default {
 </script>
 
 <style scoped>
-input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.completed {
-  text-decoration: line-through;
-}
-
 .form-container {
-  margin: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #92c8ff, #cc6dff) !important;
+
+}
+
+.form-content {
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -150,23 +153,23 @@ table {
 
 td, th {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
 }
 
 button {
-  background-color: #98c935;
-  color: white;
+  background-color: #5f2222 !important;
+  color: white !important;
   padding: 10px;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #c6b8c5;
+  background-color: #c6b8c5 !important;
 }
 
 input[type="text"], input[type="date"], input[type="time"] {
-  width: 100%;
+  width: calc(100% - 20px); /* Sesuaikan lebar input dengan margin padding */
   padding: 8px;
   box-sizing: border-box;
 }

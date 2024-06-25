@@ -44,14 +44,10 @@ export default {
 </script>
 
 <style>
-/* Bagian ini menambahkan warna latar belakang dasar aplikasi menjadi pink soft */
-body {
-  background-color: #ffc0cb; /* Warna pink soft */
-}
 
 .custom-navbar {
-  background: rgb(253, 90, 201) ; /* Tetap seperti sebelumnya */
-  color: #000000; 
+  background: rgb(253, 90, 201) !important; 
+  color: #000000 !important; 
   height: 120px; 
   padding: 0 10px;
 }
@@ -70,10 +66,10 @@ body {
 
 .custom-title h3 {
   margin: 5;
-  color: #000000;
+  color: #000000 !important;
   font-size: 2.0rem; 
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.719); /* Tambahkan bayangan teks untuk tampilan lebih baik */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.719) !important; /* Tambahkan bayangan teks untuk tampilan lebih baik */
 }
 
 .custom-navbar .q-item {
@@ -85,17 +81,17 @@ body {
 }
 
 .custom-navbar .q-item-label {
-  color: #070303; /* Warna teks link */
+  color: #070303 !important; /* Warna teks link */
   font-weight: bold;
   margin-left: 5px; 
 }
 
 .custom-navbar .q-item:hover .q-item-label {
-  color: #7b765f84; 
+  color: #7b765f84 !important; 
 }
 
 .custom-navbar .active .q-item-label {
-  color: #7b765f84; 
+  color: #7b765f84 !important; 
 }
 
 .custom-navbar .q-icon {

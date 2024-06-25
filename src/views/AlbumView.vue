@@ -51,7 +51,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  background-color: #ffc0fa !important; /* Ubah dengan warna yang Anda inginkan */
   color: #000000;
 }
 
