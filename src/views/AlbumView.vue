@@ -61,9 +61,6 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-image: url('@/assets/bgcute.png');
-  background-size: cover;
-  background-position: center;
 }
 
 .album-container {
